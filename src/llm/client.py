@@ -6,8 +6,11 @@ class LLMClient:
     Cliente centralizado para interações com LLMs no pipeline.
     Gerencia o fallback entre conectores reais e o modo stub (seguro/MVP).
     """
-    def __init__(self):
-        self.provider = config.LLM_PROVIDER
+    def __init__(self, agent_flag: bool = False):
+        if config.LLM_PROVIDER == "gemini" and agent_flag:
+            self.provider = "gemini"
+        else:
+            self.provider = "stub"
         
         if self.provider == "gemini":
             from google import genai

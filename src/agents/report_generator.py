@@ -22,9 +22,11 @@ def _safe_dump(obj):
     except Exception:
         return str(obj)
 
+from core.config import config
+
 class ReportGenerator:
     def __init__(self):
-        self.llm_client = LLMClient()
+        self.llm_client = LLMClient(config.USE_GEMINI_REPORT_GENERATOR)
         try:
             self.prompt = PromptLoader.load_prompt("report_generator")
         except FileNotFoundError:

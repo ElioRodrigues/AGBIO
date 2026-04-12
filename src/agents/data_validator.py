@@ -12,9 +12,11 @@ from schemas.contracts import StudyPayload, DataValidatorOutput
 from core.prompt_loader import PromptLoader
 from llm.client import LLMClient
 
+from core.config import config
+
 class DataValidator:
     def __init__(self):
-        self.llm_client = LLMClient()
+        self.llm_client = LLMClient(config.USE_GEMINI_DATA_VALIDATOR)
         try:
             self.prompt = PromptLoader.load_prompt("data_validator")
         except FileNotFoundError:

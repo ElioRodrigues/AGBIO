@@ -45,7 +45,7 @@ class OrchestratorEngine:
         results["classification"] = await self.classifier.execute(payload)
         results["ai_validation"] = await self.ai_validator.execute(payload, det_validation)
         results["patterns"] = await self.pattern_detector.execute(payload)
-        results["interpretation"] = await self.interpreter.execute(payload, results["patterns"])
+        results["interpretation"] = await self.interpreter.execute(payload, results)
         results["report"] = await self.reporter.execute(payload, results)
         results["audit"] = await self.auditor.execute(results)
         

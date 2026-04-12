@@ -11,6 +11,13 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     GEMINI_MODEL: str = "gemini-2.5-flash"
 
+    # Feature Flags por Agente
+    USE_GEMINI_STUDY_CLASSIFIER: bool = False
+    USE_GEMINI_DATA_VALIDATOR: bool = False
+    USE_GEMINI_PATTERN_DETECTOR: bool = False
+    USE_GEMINI_BIOMARKER_INTERPRETER: bool = False
+    USE_GEMINI_REPORT_GENERATOR: bool = False
+
     class Config:
         env_file = ".env"
         extra = "ignore"

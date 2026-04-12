@@ -11,9 +11,11 @@ from schemas.contracts import StudyPayload, StudyClassifierOutput, StudyClassifi
 from core.prompt_loader import PromptLoader
 from llm.client import LLMClient
 
+from core.config import config
+
 class StudyClassifier:
     def __init__(self):
-        self.llm_client = LLMClient()
+        self.llm_client = LLMClient(config.USE_GEMINI_STUDY_CLASSIFIER)
         try:
             self.prompt = PromptLoader.load_prompt("study_classifier")
         except FileNotFoundError:

@@ -353,12 +353,124 @@ Essa stack foi escolhida por favorecer:
 
 ---
 
-## Organização Inicial do Repositório
+## Como executar localmente
 
-A estrutura inicial prevista é:
+### Pré-requisitos
 
-```text
-docs/
-src/
-tests/
-README.md
+Antes de rodar o projeto localmente, é recomendado ter:
+
+- Python 3.10 ou superior
+- ambiente Linux, macOS ou Windows com terminal
+- `python3-venv` disponível no sistema
+- acesso ao terminal na raiz do projeto
+
+---
+
+### 1. Criar e ativar ambiente virtual
+
+No Ubuntu ou sistemas compatíveis:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+
+No Windows PowerShell:
+
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+2. Instalar dependências
+
+Com o ambiente virtual ativado:
+
+pip install -r requirements.txt
+
+3. Criar o arquivo .env
+
+cp .env.example .env
+
+Se estiver no Windows PowerShell:
+
+Copy-Item .env.example .env
+
+4. Escolher o modo de execução
+
+O projeto pode rodar em dois modos:
+
+Modo stub
+
+Nesse modo, o sistema funciona sem chamar modelos reais de IA.
+É o modo mais seguro para desenvolvimento inicial, demonstrações estruturais e execução por colegas sem chave de API.
+
+Exemplo de .env:
+
+APP_NAME="Toxicology Meta-Agent API"
+LLM_PROVIDER="stub"
+GEMINI_MODEL="gemini-2.5-flash"
+
+Modo gemini
+
+Nesse modo, agentes integrados usam a Gemini API real.
+
+Exemplo de .env:
+
+APP_NAME="Toxicology Meta-Agent API"
+LLM_PROVIDER="gemini"
+GEMINI_API_KEY="SUA_CHAVE_AQUI"
+GEMINI_MODEL="gemini-2.5-flash"
+
+5. Subir a API localmente
+
+Na raiz do projeto:
+
+PYTHONPATH=src uvicorn src.main:app --reload
+
+Se tudo estiver correto, a API ficará disponível em:
+
+http://127.0.0.1:8000
+
+A documentação interativa Swagger ficará em:
+
+http://127.0.0.1:8000/docs
+
+6. Testar a API
+
+O endpoint principal do MVP é:
+
+POST /api/v1/studies/analyze
+
+Você pode testá-lo:
+
+pelo Swagger (/docs)
+por curl
+com os exemplos da pasta examples/
+
+Arquivos de exemplo disponíveis:
+
+examples/valid_study.json
+examples/invalid_study_missing_datasets.json
+examples/invalid_study_missing_groups.json
+
+Exemplo de teste com curl:
+
+curl -X POST "http://127.0.0.1:8000/api/v1/study/analyze" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/json" \
+  -d @examples/valid_study.json
+
+
+  7. Comportamento esperado
+Quando o payload for válido
+
+A API deve:
+
+passar pela validação determinística
+executar o pipeline
+retornar classificação, validação, relatório e auditoria
+Quando o payload for inválido
+
+A API deve:
+
+falhar na validação determinística
+interromper o pipeline
+retornar pipeline_status: "aborted_due_to_structural_errors"
