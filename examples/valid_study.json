@@ -1,0 +1,47 @@
+{
+  "study_id": "STUDY-101",
+  "study_metadata": {
+    "title": "Toxicity Study of Compound X in Rats",
+    "study_type": "28-Day Repeated Dose Toxicity",
+    "species": "Rattus norvegicus",
+    "duration_days": 28,
+    "objective": "Evaluate subacute toxicity of Compound X",
+    "regulatory_target": ["OECD 407"]
+  },
+  "protocol_summary": "Administered daily via oral gavage. Blood drawn on day 29.",
+  "experimental_groups": [
+    {
+      "group_id": "G1",
+      "group_name": "Control",
+      "description": "Vehicle only"
+    },
+    {
+      "group_id": "G2",
+      "group_name": "High Dose",
+      "description": "Compound X 100mg/kg"
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "DS-BIOCHEM-01",
+      "name": "Clinical Biochemistry",
+      "domain": "Biochemistry",
+      "type": "tabular",
+      "schema": {
+        "animal_id": "string",
+        "alt": "float",
+        "ast": "float"
+      },
+      "records": [
+        {"animal_id": "A1", "alt": 45.2, "ast": 120.5},
+        {"animal_id": "A2", "alt": 47.1, "ast": 118.0}
+      ]
+    }
+  ],
+  "analysis_config": {
+    "language": "pt-BR",
+    "strict_validation": true,
+    "enable_pattern_detection": true,
+    "enable_interpretation": true
+  }
+}

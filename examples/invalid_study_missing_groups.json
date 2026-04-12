@@ -1,0 +1,34 @@
+{
+  "study_id": "STUDY-103",
+  "study_metadata": {
+    "title": "Toxicity Study of Compound Z",
+    "study_type": "Dermal Toxicity",
+    "species": "Oryctolagus cuniculus",
+    "duration_days": 21,
+    "objective": "Evaluate dermal toxicity",
+    "regulatory_target": ["OECD 410"]
+  },
+  "protocol_summary": "Daily dermal application.",
+  "experimental_groups": [],
+  "datasets": [
+    {
+      "dataset_id": "DS-DERMAL-01",
+      "name": "Dermal Observations",
+      "domain": "Pathology",
+      "type": "tabular",
+      "schema": {
+        "animal_id": "string",
+        "erythema_score": "int"
+      },
+      "records": [
+        {"animal_id": "R1", "erythema_score": 1}
+      ]
+    }
+  ],
+  "analysis_config": {
+    "language": "pt-BR",
+    "strict_validation": true,
+    "enable_pattern_detection": true,
+    "enable_interpretation": true
+  }
+}

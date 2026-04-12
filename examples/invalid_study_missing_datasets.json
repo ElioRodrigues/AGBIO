@@ -1,0 +1,26 @@
+{
+  "study_id": "STUDY-102",
+  "study_metadata": {
+    "title": "Toxicity Study of Compound Y",
+    "study_type": "Acute Toxicity",
+    "species": "Mus musculus",
+    "duration_days": 14,
+    "objective": "Evaluate acute toxicity",
+    "regulatory_target": ["OECD 420"]
+  },
+  "protocol_summary": "Single dose observation for 14 days.",
+  "experimental_groups": [
+    {
+      "group_id": "G1",
+      "group_name": "Treatment",
+      "description": "Compound Y administered at fixed dose"
+    }
+  ],
+  "datasets": [],
+  "analysis_config": {
+    "language": "pt-BR",
+    "strict_validation": true,
+    "enable_pattern_detection": true,
+    "enable_interpretation": true
+  }
+}
